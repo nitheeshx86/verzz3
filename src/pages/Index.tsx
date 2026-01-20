@@ -6,6 +6,9 @@ import VerzzSection from '@/components/VerzzSection';
 import BlackSection from '@/components/BlackSection';
 import LearnSwipSection from '@/components/LearnSwipSection';
 import LearnSection from '@/components/LearnSection';
+//import DailyQuizzesSection from '@/components/DailyQuizzesSection';
+//import LevelProgressSection from '@/components/LevelProgressSection';
+
 
 const Index = () => {
   return (
@@ -18,6 +21,8 @@ const Index = () => {
       <BlackSection />
       <LearnSwipSection />
       <LearnSection />
+      {/* <DailyQuizzesSection />
+      <LevelProgressSection /> */}
     </main>
   );
 };
