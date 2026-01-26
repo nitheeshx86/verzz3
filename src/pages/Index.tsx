@@ -4,10 +4,7 @@ import FinanceSection from '@/components/FinanceSection';
 import AuraSection from '@/components/AuraSection';
 import VerzzSection from '@/components/VerzzSection';
 import BlackSection from '@/components/BlackSection';
-import LearnSwipSection from '@/components/LearnSwipSection';
-import LearnSection from '@/components/LearnSection';
-//import DailyQuizzesSection from '@/components/DailyQuizzesSection';
-//import LevelProgressSection from '@/components/LevelProgressSection';
+import BlankSection from '@/components/BlankSection';
 
 
 const Index = () => {
@@ -19,10 +16,7 @@ const Index = () => {
       <AuraSection />
       <VerzzSection />
       <BlackSection />
-      <LearnSwipSection />
-      <LearnSection />
-      {/* <DailyQuizzesSection />
-      <LevelProgressSection /> */}
+      <BlankSection />
     </main>
   );
 };
