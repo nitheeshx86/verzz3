@@ -582,13 +582,7 @@ const AuraSection: React.FC<BentoProps> = ({
             padding: 0.5rem;
           }
           
-          @media (min-width: 600px) {
-            .card-responsive {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-          
-          @media (min-width: 1024px) {
+          @media (min-width: 768px) {
             .card-responsive {
               grid-template-columns: repeat(6, 1fr);
             }
@@ -740,8 +734,8 @@ const AuraSection: React.FC<BentoProps> = ({
                             );
                         }
 
-                        const baseClassName = `card flex flex-col justify-between relative z-10 aspect-[4/3] w-full max-w-full p-8 md:p-10 rounded-[2rem] border-2 border-solid border-black/5 font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] ${enableBorderGlow ? 'card--border-glow' : ''
-                            } ${isBig ? 'min-h-[400px]' : 'min-h-[250px]'}`;
+                        const baseClassName = `card flex flex-col justify-between relative z-10 aspect-[4/3] w-full max-w-full p-6 lg:p-10 rounded-[2rem] border-2 border-solid border-black/5 font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] ${enableBorderGlow ? 'card--border-glow' : ''
+                            } ${isBig ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[160px] lg:min-h-[250px]'}`;
 
                         const cardStyle = {
                             backgroundColor: 'white',
@@ -794,16 +788,16 @@ const AuraSection: React.FC<BentoProps> = ({
                                             </span>
                                         </div>
                                         <div className="card__content flex flex-col relative z-10 mt-auto">
-                                            <h3 className={`card__title text-black m-0 mb-4 tracking-tighter leading-none
-                                                ${index === 2 ? 'text-7xl md:text-9xl font-bold' : ''}
-                                                ${(index === 3 || index === 8) ? 'text-5xl md:text-7xl font-bold' : ''}
-                                                ${(!isBig) ? 'text-3xl md:text-5xl' : ''}
+                                            <h3 className={`card__title text-black m-0 mb-2 lg:mb-4 tracking-tighter leading-none break-words
+                                                ${index === 2 ? 'text-5xl lg:text-8xl xl:text-9xl font-bold' : ''}
+                                                ${(index === 3 || index === 8) ? 'text-4xl lg:text-6xl xl:text-7xl font-bold' : ''}
+                                                ${(!isBig) ? 'text-3xl lg:text-4xl xl:text-5xl' : ''}
                                                 ${(index === 3 || index === 5 || index === 7) ? 'font-semibold' : 'font-bold'}
                                             `}>
                                                 {card.title}
                                             </h3>
                                             <p
-                                                className={`card__description ${isBig ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'} text-gray-500 leading-relaxed max-w-md ${textAutoHide ? 'text-clamp-2' : ''}`}
+                                                className={`card__description ${isBig ? 'text-base lg:text-xl xl:text-2xl' : 'text-sm lg:text-lg xl:text-xl'} text-gray-500 leading-tight lg:leading-relaxed max-w-md ${textAutoHide ? 'line-clamp-2' : ''}`}
                                             >
                                                 {card.description}
                                             </p>
