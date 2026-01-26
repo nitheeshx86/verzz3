@@ -79,13 +79,13 @@ const Navbar = () => {
                         Our Story
                     </a>
                     <a
-                        href="#join"
+                        href="#sparkles-section"
                         className="text-black text-[13px] md:text-[14px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Join Forces
                     </a>
                     <a
-                        href="#contact"
+                        href="#sparkles-section"
                         className="px-8 py-3.5 bg-black text-white rounded-[12px] text-[13px] md:text-[14px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[170px] text-center shadow-xl"
                     >
                         Get In Touch

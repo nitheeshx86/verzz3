@@ -26,7 +26,7 @@ const BetaAccessSection = () => {
                     <span className="arrow">›</span>
                 </button>
                 <button className="px-10 py-5 bg-white/5 hover:bg-white/10 text-white rounded-[16px] text-[15px] font-bold uppercase tracking-[0.2em] border border-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl min-w-[205px] relative z-30">
-                    Join Forces
+                    ← Join Forces
                 </button>
             </div>
 
@@ -51,7 +51,7 @@ const BetaAccessSection = () => {
 const SparklesSection = () => {
     const isMobile = useIsMobile();
     return (
-        <div className="min-h-[70rem] md:min-h-[60rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden mb-[110vh] md:mb-[80vh]">
+        <div id="sparkles-section" className="min-h-[70rem] md:min-h-[60rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden mb-[110vh] md:mb-[80vh]">
             <h1 className="md:text-[12rem] text-6xl lg:text-[15rem] font-bold text-center text-white relative z-20 tracking-tighter">
                 VERZ<span className="-ml-[0.05em]">Z</span>
             </h1>

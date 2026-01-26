@@ -789,15 +789,15 @@ const AuraSection: React.FC<BentoProps> = ({
                                         </div>
                                         <div className="card__content flex flex-col relative z-10 mt-auto">
                                             <h3 className={`card__title text-black m-0 mb-2 lg:mb-4 tracking-tighter leading-none break-words
-                                                ${index === 2 ? 'text-5xl lg:text-8xl xl:text-9xl font-bold' : ''}
-                                                ${(index === 3 || index === 8) ? 'text-4xl lg:text-6xl xl:text-7xl font-bold' : ''}
-                                                ${(!isBig) ? 'text-3xl lg:text-4xl xl:text-5xl' : ''}
+                                                ${index === 2 ? 'text-6xl lg:text-8xl xl:text-9xl font-bold' : ''}
+                                                ${(index === 3 || index === 8) ? 'text-5xl lg:text-6xl xl:text-7xl font-bold' : ''}
+                                                ${(!isBig) ? 'text-4xl lg:text-4xl xl:text-5xl' : ''}
                                                 ${(index === 3 || index === 5 || index === 7) ? 'font-semibold' : 'font-bold'}
                                             `}>
                                                 {card.title}
                                             </h3>
                                             <p
-                                                className={`card__description ${isBig ? 'text-base lg:text-xl xl:text-2xl' : 'text-sm lg:text-lg xl:text-xl'} text-gray-500 leading-tight lg:leading-relaxed max-w-md ${textAutoHide ? 'line-clamp-2' : ''}`}
+                                                className={`card__description ${isBig ? 'text-lg lg:text-xl xl:text-2xl' : 'text-base lg:text-lg xl:text-xl'} text-gray-500 leading-tight lg:leading-relaxed max-w-md ${textAutoHide ? 'line-clamp-2' : ''}`}
                                             >
                                                 {card.description}
                                             </p>

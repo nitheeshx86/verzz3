@@ -94,13 +94,13 @@ const HeroSection = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 pointer-events-auto">
-                  <button className="waitlist-btn">
+                  <a href="#sparkles-section" className="waitlist-btn">
                     <span className="text">Join the Waitlist</span>
                     <span className="arrow">›</span>
-                  </button>
-                  <button className="text-white/80 hover:text-white font-medium text-lg transition-colors">
+                  </a>
+                  <a href="#sparkles-section" className="text-white/80 hover:text-white font-medium text-lg transition-colors">
                     Build with us
-                  </button>
+                  </a>
                 </div>
               </motion.div>
 
