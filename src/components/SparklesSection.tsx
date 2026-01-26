@@ -3,13 +3,14 @@ import { SparklesCore } from "./ui/sparkles";
 import { PlaceholdersAndVanishInput } from "./ui/placeholders-and-vanish-input";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const BetaAccessSection = () => {
     const [showBetaForm, setShowBetaForm] = useState(false);
 
     return (
         <div className="flex flex-col items-center w-full max-w-xl relative">
-            <div className="flex flex-col md:flex-row items-center gap-8 mb-32">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 mb-16 md:mb-32">
                 <button
                     type="button"
                     onClick={(e) => {
@@ -31,7 +32,7 @@ const BetaAccessSection = () => {
 
             <div
                 className={cn(
-                    "absolute top-24 left-0 right-0 flex flex-col items-center w-full transition-all duration-500 ease-out",
+                    "absolute top-[280px] md:top-24 left-0 right-0 flex flex-col items-center w-full transition-all duration-500 ease-out",
                     showBetaForm ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
                 )}
             >
@@ -48,17 +49,18 @@ const BetaAccessSection = () => {
 };
 
 const SparklesSection = () => {
+    const isMobile = useIsMobile();
     return (
-        <div className="min-h-[60rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden mb-[110vh] md:mb-[80vh]">
+        <div className="min-h-[70rem] md:min-h-[60rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden mb-[110vh] md:mb-[80vh]">
             <h1 className="md:text-[12rem] text-6xl lg:text-[15rem] font-bold text-center text-white relative z-20 tracking-tighter">
                 VERZ<span className="-ml-[0.05em]">Z</span>
             </h1>
-            <div className="w-full max-w-[60rem] relative -mt-4">
+            <div className="w-full max-w-[60rem] relative md:-mt-4 mt-1">
                 {/* Gradients */}
-                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+                <div className="absolute inset-x-20 top-2 md:top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+                <div className="absolute inset-x-20 top-2 md:top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+                <div className="absolute inset-x-60 top-2 md:top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+                <div className="absolute inset-x-60 top-2 md:top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
 
                 <div className="flex flex-col items-center">
                     {/* Sparkles Effect Container */}
@@ -68,7 +70,7 @@ const SparklesSection = () => {
                             background="transparent"
                             minSize={0.4}
                             maxSize={1.5}
-                            particleDensity={1500}
+                            particleDensity={isMobile ? 600 : 1500}
                             className="w-full h-full"
                             particleColor="#FFFFFF"
                         />

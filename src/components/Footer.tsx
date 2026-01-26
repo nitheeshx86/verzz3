@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="relative w-full bg-[#0055FF] text-white pt-48 pb-12 overflow-hidden min-h-[70vh] flex flex-col justify-end">
+        <footer className="relative w-full bg-[#0055FF] text-white pt-64 md:pt-48 pb-12 overflow-hidden min-h-[70vh] flex flex-col justify-start md:justify-end">
             {/* Top Bars - Zebra style */}
             <div className="absolute top-0 left-0 w-full flex flex-col">
                 <div className="h-6 w-full bg-[#0055FF]" />
@@ -17,14 +17,14 @@ const Footer = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-24">
+                <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-24">
                     {/* Left Side: Logo */}
-                    <div className="mb-12 md:mb-0">
+                    <div className="mb-16 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
                         <h2 className="text-7xl md:text-[10rem] font-black tracking-tighter leading-[0.85] mb-4">
                             VERZ<span className="-ml-[0.05em]">Z</span>
                         </h2>
-                        <p className="text-sm font-bold uppercase tracking-[0.5em] opacity-40 ml-2">
-                            Forward Finance
+                        <p className="text-sm font-bold uppercase tracking-[0.5em] opacity-40 md:ml-2">
+                            FORWARD FINANCE
                         </p>
                     </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
 
                     <div className="mt-16 flex justify-between items-center opacity-30 text-[10px] uppercase tracking-[0.6em] font-black">
                         <span>© 2026 VERZZ HQ / GLOBAL</span>
-                        <span>Est. 2024</span>
+                        <span>Est. 2026</span>
                     </div>
                 </div>
             </div>

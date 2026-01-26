@@ -33,8 +33,8 @@ const Index = () => {
           <SparklesSection />
         </div>
 
-        {/* Footer is revealed from beneath */}
-        <div className="sticky bottom-0 left-0 w-full -z-10 h-auto">
+        {/* Footer is revealed from beneath on desktop, normal scroll on mobile */}
+        <div className="relative md:sticky md:bottom-0 left-0 w-full z-0 md:-z-10 h-auto">
           <Footer />
         </div>
       </main>

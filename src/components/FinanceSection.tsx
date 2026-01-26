@@ -12,6 +12,9 @@ const ComicSpotlight = () => {
   const comicsRow2 = ['/comics/comic2.png', '/comics/comic3.png', '/comics/comic1.png']; // Different order
 
   useEffect(() => {
+    // Skip spotlight logic on mobile to save performance
+    if (window.innerWidth < 768) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();

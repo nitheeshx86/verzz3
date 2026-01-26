@@ -86,14 +86,14 @@ const HeroSection = () => {
                     cursorCharacter="|"
                   />
                   <br />
-                  <span className="text-[0.95em] whitespace-nowrap">SEBI Verified Experts.</span>
+                  <span className="text-[0.95em] inline-block">SEBI Verified Experts.</span>
                 </h1>
                 <p className="body-large max-w-2xl text-white/80 mb-10">
                   A no-cap way to learn finance. Discover SEBI-verified fund managers,
                   build real financial understanding, and connect with confidence.
                 </p>
 
-                <div className="flex items-center gap-8 pointer-events-auto">
+                <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 pointer-events-auto">
                   <button className="waitlist-btn">
                     <span className="text">Join the Waitlist</span>
                     <span className="arrow">›</span>
