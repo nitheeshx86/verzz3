@@ -47,7 +47,7 @@ const VerzzSection = () => {
             style={{ scale, opacity: textOpacity, color: 'rgb(13, 13, 13)' }}
             className="verzz-text select-none relative z-10"
           >
-            VERZZ
+            VERZ<span className="-ml-[0.05em]">Z</span>
           </motion.div>
         </div>
       </motion.div>

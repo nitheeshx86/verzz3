@@ -46,16 +46,16 @@ const Navbar = () => {
                 opacity: isVisible ? 1 : 0
             }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-6 left-0 right-0 z-[100] px-6 md:px-12 flex justify-center pointer-events-none"
+            className="fixed top-4 left-0 right-0 z-[100] px-6 md:px-12 flex justify-center pointer-events-none"
         >
             <div
                 className={`
-          w-full max-w-[1300px] 
+          w-full max-w-[1000px] 
           bg-white
-          rounded-[20px] md:rounded-[26px]
+          rounded-[16px] md:rounded-[22px]
           transition-all duration-500 ease-in-out
           flex items-center justify-between
-          px-8 py-4 md:px-12 md:py-4.5
+          px-6 py-4 md:px-10 md:py-5
           pointer-events-auto
           mix-blend-difference
         `}
@@ -64,29 +64,29 @@ const Navbar = () => {
                 <div className="flex items-center">
                     <a
                         href="/"
-                        className="text-black text-2xl md:text-3xl font-black tracking-[-0.05em] hover:opacity-60 transition-all duration-300"
+                        className="text-black text-xl md:text-2xl font-black tracking-[-0.05em] hover:opacity-60 transition-all duration-300"
                     >
-                        VERZZ
+                        VERZ<span className="-ml-[0.05em]">Z</span>
                     </a>
                 </div>
 
                 {/* Right Section: Navigation Links */}
-                <div className="hidden md:flex items-center space-x-12">
+                <div className="hidden md:flex items-center space-x-10">
                     <a
                         href="#story"
-                        className="text-black text-[14px] md:text-[15px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
+                        className="text-black text-[13px] md:text-[14px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Our Story
                     </a>
                     <a
                         href="#join"
-                        className="text-black text-[14px] md:text-[15px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
+                        className="text-black text-[13px] md:text-[14px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Join Forces
                     </a>
                     <a
                         href="#contact"
-                        className="px-12 py-5 bg-black text-white rounded-[16px] text-[14px] md:text-[15px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[205px] text-center shadow-xl"
+                        className="px-8 py-3.5 bg-black text-white rounded-[12px] text-[13px] md:text-[14px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[170px] text-center shadow-xl"
                     >
                         Get In Touch
                     </a>

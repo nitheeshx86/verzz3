@@ -42,13 +42,17 @@ const BlackSection = () => {
         <div className="w-full overflow-hidden py-60 -mt-[35vh] md:-mt-[55vh]">
           <div className="w-[150%] -rotate-[10deg] origin-center translate-x-[-10%] opacity-60">
             <ScrollVelocity
-              texts={['DISCOVER', 'LEARN', 'INVEST']}
+              texts={['DISCOVER.', 'LEARN.', 'INVEST.']}
               velocity={50}
               className="text-6xl md:text-[10rem] font-black tracking-tighter text-white/20 uppercase leading-[0.9]"
             />
           </div>
         </div>
+
       </div>
+
+      {/* Bottom Gradient Overlay - Transition from rgb(13,13,13) to black */}
+      <div className="absolute inset-x-0 bottom-0 h-[800px] bg-gradient-to-b from-transparent via-black/40 to-black pointer-events-none z-30" />
     </section>
   );
 };
