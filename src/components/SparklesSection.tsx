@@ -51,7 +51,7 @@ const BetaAccessSection = () => {
 const SparklesSection = () => {
     const isMobile = useIsMobile();
     return (
-        <div id="sparkles-section" className="min-h-[70rem] md:min-h-[60rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden mb-[110vh] md:mb-[80vh]">
+        <div id="sparkles-section" className="min-h-[70rem] md:min-h-[60rem] w-full bg-black flex flex-col items-center justify-center overflow-hidden mb-[55vh] md:mb-[80vh]">
             <h1 className="md:text-[12rem] text-6xl lg:text-[15rem] font-bold text-center text-white relative z-20 tracking-tighter">
                 VERZ<span className="-ml-[0.05em]">Z</span>
             </h1>
