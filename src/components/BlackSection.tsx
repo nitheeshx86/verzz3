@@ -17,12 +17,12 @@ const BlackSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[rgb(13,13,13)] overflow-hidden py-24"
+      className="relative bg-black overflow-hidden pb-24"
     >
       {/* Background Overlay - z-0 */}
       <motion.div
         style={{ opacity: sectionOpacity }}
-        className="absolute inset-0 bg-[rgb(13,13,13)] pointer-events-none z-0"
+        className="absolute inset-0 bg-black pointer-events-none z-0"
       />
 
       {/* Meteors - z-10 (restored) */}
@@ -31,7 +31,7 @@ const BlackSection = () => {
       </div>
 
       {/* Content - z-20 (above everything) */}
-      <div className="relative z-20">
+      <div className="relative z-20 -mt-24 md:-mt-32">
         <div className="mb-0">
           <TextReveal className="text-3xl md:text-5xl lg:text-6xl text-white">
             VERZZ is a SEBI-compliant platform where you discover verified fund managers, learn the basics of investing, and connect safely.

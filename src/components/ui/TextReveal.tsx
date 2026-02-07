@@ -11,7 +11,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
     const targetRef = useRef<HTMLDivElement | null>(null)
     const { scrollYProgress } = useScroll({
         target: targetRef,
-        offset: ["start end", "center center"]
+        offset: ["start end", "end end"]
     })
 
     if (typeof children !== "string") {
@@ -29,15 +29,15 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
             >
                 <span
                     className={cn(
-                        "flex flex-wrap p-5 font-bold text-white/20 md:p-8 lg:p-10 leading-tight",
+                        "flex flex-wrap p-5 font-bold md:p-8 lg:p-10 leading-tight",
                         className
                     )}
                 >
                     {words.map((word, i) => {
                         const totalWords = words.length;
-                        // Map the reveal to finish by 80% of the progress
-                        const start = (i / totalWords) * 0.8;
-                        const end = start + (0.8 / totalWords);
+                        // Start slightly later (0.1) to ensure first line is hidden at start
+                        const start = 0.1 + (i / totalWords) * 0.6;
+                        const end = start + (0.6 / totalWords);
                         return (
                             <Word key={i} progress={scrollYProgress} range={[start, end]}>
                                 {word}
@@ -78,7 +78,7 @@ const Word: FC<WordProps> = ({ children, progress, range }) => {
 
     return (
         <span className="xl:lg-3 relative mx-1 lg:mx-1.5 inline-block">
-            <span className="absolute opacity-30 text-white">{children}</span>
+            <span className="absolute opacity-20 text-white">{children}</span>
             <motion.span
                 style={{ opacity: opacity }}
                 className={cn(

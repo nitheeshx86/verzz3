@@ -10,25 +10,32 @@ const VerzzSection = () => {
   });
 
   // Extremely slow start, aggressive acceleration
-  const scale = useTransform(scrollYProgress, [0.1, 0.9], [1, 250], {
-    ease: (v) => Math.pow(v, 5) // Quintic ease-in for almost stationary start
+  const scale = useTransform(scrollYProgress, [0.05, 1.0], [1, 350], {
+    ease: (v) => Math.pow(v, 4)
   });
-  const textOpacity = useTransform(scrollYProgress, [0.05, 0.2, 0.7, 0.85], [0, 1, 1, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.05, 0.15, 0.9, 1.0], [0, 1, 1, 0]);
 
-  // New: "enter" text opacity - stays visible longer and starts solid
-  const enterOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0]);
+  // New: Text color also transitions to pure black as it scales
+  const textColor = useTransform(
+    scrollYProgress,
+    [0.1, 0.6],
+    ["rgb(13, 13, 13)", "rgb(0, 0, 0)"]
+  );
 
-  // Background transitions from white to black as you scroll
+  // New: "enter" label opacity
+  const enterOpacity = useTransform(scrollYProgress, [0.1, 0.25], [1, 0]);
+
+  // Background transitions from white to pure black earlier to avoid seams
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0, 0.55, 0.8],
-    ["rgb(255, 255, 255)", "rgb(255, 255, 255)", "rgb(13, 13, 13)"]
+    [0.1, 0.4, 0.6],
+    ["rgb(255, 255, 255)", "rgb(255, 255, 255)", "rgb(0, 0, 0)"]
   );
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-[400vh]"
+      className="relative h-[250vh] bg-black"
     >
       <motion.div
         style={{ backgroundColor }}
@@ -44,11 +51,13 @@ const VerzzSection = () => {
           </motion.div>
 
           <motion.div
-            style={{ scale, opacity: textOpacity, color: 'rgb(13, 13, 13)' }}
+            style={{ scale, opacity: textOpacity, color: textColor }}
             className="verzz-text select-none relative z-10"
           >
             VERZ<span className="-ml-[0.05em]">Z</span>
           </motion.div>
+
+
         </div>
       </motion.div>
     </section>

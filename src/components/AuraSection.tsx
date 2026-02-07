@@ -717,16 +717,24 @@ const AuraSection: React.FC<BentoProps> = ({
                             (index === 4 && hoveredTriggerIndex === 5) ||
                             (index === 6 && hoveredTriggerIndex === 7);
 
+                        const triggerMapping: { [key: number]: number } = { 1: 0, 4: 5, 6: 7 };
+                        const triggerIndex = triggerMapping[index];
+
                         if (card.hidden && card.image) {
                             return (
-                                <div key={index} className={`card relative z-0 aspect-[4/3] w-full ${isBig ? 'min-h-[400px]' : 'min-h-[250px]'} flex items-center justify-center overflow-hidden`}>
+                                <div
+                                    key={index}
+                                    className={`card relative z-0 aspect-[4/3] w-full ${isBig ? 'min-h-[400px]' : 'min-h-[250px]'} flex items-center justify-center overflow-hidden`}
+                                    onMouseEnter={() => triggerIndex !== undefined && setHoveredTriggerIndex(triggerIndex)}
+                                    onMouseLeave={() => setHoveredTriggerIndex(null)}
+                                >
                                     <img
                                         src={card.image}
                                         alt={card.label}
                                         className="w-full h-full object-contain scale-125 transition-all duration-1000 ease-in-out"
                                         style={{
-                                            opacity: isVisible ? 1 : 0,
-                                            filter: isVisible ? 'grayscale(0)' : 'grayscale(1) blur(10px)',
+                                            opacity: isVisible ? 1 : 0.65,
+                                            filter: isVisible ? 'grayscale(0)' : 'grayscale(1) blur(4px)',
                                             transform: `scale(${isVisible ? 1.25 : 1.1})`
                                         }}
                                     />
