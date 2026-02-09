@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef, memo } from 'react';
 import FallingText from './FallingText';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Isolated Spotlight component to prevent re-renders of the main FinanceSection
 const ComicSpotlight = () => {
+  const isMobile = useIsMobile();
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const [opacity, setOpacity] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,7 +15,7 @@ const ComicSpotlight = () => {
 
   useEffect(() => {
     // Skip spotlight logic on mobile to save performance
-    if (window.innerWidth < 768) return;
+    if (isMobile) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -48,8 +50,8 @@ const ComicSpotlight = () => {
 
   const renderGrid = (isSpotlight: boolean) => (
     <div
-      className={`absolute inset-0 grid grid-cols-3 grid-rows-2 gap-8 p-12 md:p-20 ${!isSpotlight ? 'opacity-[0.04]' : 'transition-opacity duration-700 ease-out'}`}
-      style={isSpotlight ? {
+      className={`absolute inset-0 grid ${isMobile ? 'grid-cols-1 grid-rows-3 gap-4 p-6 opacity-[0.15]' : `grid-cols-3 grid-rows-2 gap-8 p-12 md:p-20 ${!isSpotlight ? 'opacity-[0.04]' : 'transition-opacity duration-700 ease-out'}`}`}
+      style={isSpotlight && !isMobile ? {
         opacity: opacity * 0.85,
         maskImage: `radial-gradient(circle 450px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 70%)`,
         WebkitMaskImage: `radial-gradient(circle 450px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 70%)`,
@@ -57,12 +59,12 @@ const ComicSpotlight = () => {
     >
       {/* Row 1 */}
       {comicsRow1.map((src, i) => (
-        <div key={`row1-${i}`} className="relative w-full h-[35vh] overflow-hidden">
+        <div key={`row1-${i}`} className={`relative w-full ${isMobile ? 'h-[25vh]' : 'h-[35vh]'} overflow-hidden`}>
           <img src={src} className="w-full h-full object-contain" alt="" />
         </div>
       ))}
       {/* Row 2 */}
-      {comicsRow2.map((src, i) => (
+      {!isMobile && comicsRow2.map((src, i) => (
         <div key={`row2-${i}`} className="relative w-full h-[35vh] overflow-hidden">
           <img src={src} className="w-full h-full object-contain" alt="" />
         </div>
@@ -73,7 +75,7 @@ const ComicSpotlight = () => {
   return (
     <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
       {renderGrid(false)}
-      {renderGrid(true)}
+      {!isMobile && renderGrid(true)}
     </div>
   );
 };
