@@ -11,6 +11,7 @@ import Loader from '@/components/Loader';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
+import KeepScrolling from '@/components/KeepScrolling';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +21,8 @@ const Index = () => {
       <AnimatePresence mode="wait">
         {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
+
+      <KeepScrolling isLoading={isLoading} />
 
       <main className={`hide-scrollbar relative flex flex-col transition-opacity duration-1000 ${isLoading ? 'opacity-0 h-screen overflow-hidden' : 'opacity-100'}`}>
         <div className="relative z-10 bg-black shadow-[0_50px_100px_rgba(0,0,0,0.5)]">

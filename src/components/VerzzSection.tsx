@@ -45,7 +45,7 @@ const VerzzSection = () => {
           {/* "enter" label - positioned relative to the main text */}
           <motion.div
             style={{ opacity: enterOpacity }}
-            className="absolute -top-16 md:-top-24 text-base md:text-xl uppercase tracking-[0.8em] text-gray-500 font-medium select-none pointer-events-none z-0"
+            className="absolute -top-16 md:-top-24 text-base md:text-xl uppercase tracking-[0.8em] text-white font-medium select-none pointer-events-none z-0 mix-blend-difference opacity-50"
           >
             enter
           </motion.div>
