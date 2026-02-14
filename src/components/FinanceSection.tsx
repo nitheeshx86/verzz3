@@ -120,6 +120,7 @@ const FinanceSection = () => {
           backgroundColor="transparent"
           fontSize="clamp(1.25rem, 3.5vw, 2.5rem)"
           gravity={1.8}
+          threshold={0.5}
         />
       </div>
 

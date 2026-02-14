@@ -10,6 +10,7 @@ interface FallingTextProps {
     gravity?: number;
     mouseConstraintStiffness?: number;
     fontSize?: string;
+    threshold?: number;
 }
 
 const FallingText: React.FC<FallingTextProps> = ({
@@ -20,7 +21,8 @@ const FallingText: React.FC<FallingTextProps> = ({
     wireframes = false,
     gravity = 1,
     mouseConstraintStiffness = 0.2,
-    fontSize = '1rem'
+    fontSize = '1rem',
+    threshold = 0.1
 }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const textRef = useRef<HTMLDivElement | null>(null);
@@ -59,7 +61,7 @@ const FallingText: React.FC<FallingTextProps> = ({
                         observer.disconnect();
                     }
                 },
-                { threshold: 0.1 }
+                { threshold }
             );
             observer.observe(containerRef.current);
             return () => observer.disconnect();
