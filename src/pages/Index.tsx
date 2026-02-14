@@ -24,7 +24,7 @@ const Index = () => {
 
       <KeepScrolling isLoading={isLoading} />
 
-      <main className={`hide-scrollbar relative flex flex-col transition-opacity duration-1000 ${isLoading ? 'opacity-0 h-screen overflow-hidden' : 'opacity-100'}`}>
+      <main className={`hide-scrollbar relative flex flex-col min-h-screen transition-opacity duration-1000 ${isLoading ? 'opacity-0 h-screen overflow-hidden' : 'opacity-100'}`}>
         <div className="relative z-10 bg-black shadow-[0_50px_100px_rgba(0,0,0,0.5)]">
           <Navbar />
           <HeroSection />
@@ -37,7 +37,7 @@ const Index = () => {
         </div>
 
         {/* Footer is revealed from beneath on desktop, normal scroll on mobile */}
-        <div className="relative md:sticky md:bottom-0 left-0 w-full z-0 md:-z-10 h-auto">
+        <div className="relative md:sticky md:bottom-0 left-0 w-full z-0 md:-z-10 h-auto bg-[#0055FF]">
           <Footer />
         </div>
       </main>

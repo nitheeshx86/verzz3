@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="relative w-full bg-[#0055FF] text-white pt-64 md:pt-48 pb-12 overflow-hidden min-h-[70vh] flex flex-col justify-start md:justify-end">
+        <footer className="relative w-full bg-[#0055FF] text-white pt-64 md:pt-48 pb-12 overflow-hidden min-h-[70vh] flex flex-col justify-start md:justify-end mb-[-1px]">
             {/* Top Bars - Zebra style */}
             <div className="absolute top-0 left-0 w-full flex flex-col">
                 <div className="h-6 w-full bg-[#0055FF]" />

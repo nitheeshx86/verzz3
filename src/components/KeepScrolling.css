@@ -1,0 +1,21 @@
+@keyframes scroll-bounce {
+  0% {
+    top: 2px;
+    opacity: 1;
+  }
+  50% {
+    top: calc(100% - 8px);
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  100% {
+    top: calc(100% + 4px);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
