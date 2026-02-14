@@ -50,12 +50,12 @@ const Navbar = () => {
         >
             <div
                 className={`
-          w-full max-w-[1000px] 
+          w-full max-w-[800px] 
           bg-white
           rounded-[16px] md:rounded-[22px]
           transition-all duration-500 ease-in-out
           flex items-center justify-between
-          px-6 py-4 md:px-10 md:py-5
+          px-6 py-3 md:px-8 md:py-4
           pointer-events-auto
           mix-blend-difference
         `}
@@ -74,19 +74,19 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-10">
                     <a
                         href="#story"
-                        className="text-black text-[13px] md:text-[14px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
+                        className="text-black text-[11px] md:text-[12px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Our Story
                     </a>
                     <a
                         href="#sparkles-section"
-                        className="text-black text-[13px] md:text-[14px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
+                        className="text-black text-[11px] md:text-[12px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Join Forces
                     </a>
                     <a
                         href="#sparkles-section"
-                        className="px-8 py-3.5 bg-black text-white rounded-[12px] text-[13px] md:text-[14px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[170px] text-center shadow-xl"
+                        className="px-6 py-2.5 bg-black text-white rounded-[10px] text-[11px] md:text-[12px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[140px] text-center shadow-xl"
                     >
                         Get In Touch
                     </a>

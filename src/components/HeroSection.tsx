@@ -86,7 +86,7 @@ const HeroSection = () => {
                     cursorCharacter="|"
                   />
                   <br />
-                  <span className="text-[0.95em] inline-block">SEBI Verified Experts.</span>
+                  <span className="text-[0.75em] inline-block">SEBI Verified Experts.</span>
                 </h1>
                 <p className="body-large max-w-2xl text-white/80 mb-10">
                   A no-cap way to learn finance. Discover SEBI-verified fund managers,
