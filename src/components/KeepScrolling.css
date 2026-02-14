@@ -1,21 +1,17 @@
-@keyframes scroll-bounce {
-  0% {
-    top: 2px;
-    opacity: 1;
-  }
-  50% {
-    top: calc(100% - 8px);
-    opacity: 1;
-  }
-  65% {
-    opacity: 0;
-  }
-  100% {
-    top: calc(100% + 4px);
-    opacity: 0;
-  }
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
-.animate-scroll-bounce {
-  animation: scroll-bounce 2s ease-in-out infinite;
+.animate-pulse-dot {
+    animation: pulse-dot 2.5s ease-in-out infinite;
 }

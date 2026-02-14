@@ -23,16 +23,15 @@ const KeepScrolling: React.FC<KeepScrollingProps> = ({ isLoading }) => {
       style={{ opacity }}
       className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-row items-center justify-center gap-3 animate-in fade-in duration-1000"
     >
-      {/* Pill container */}
-      <div className="relative w-4 h-8 border border-gray-500 rounded-full bg-transparent overflow-hidden">
-        {/* Animated ball */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-gray-500 rounded-full animate-scroll-bounce"
-        />
-      </div>
+      {/* Pulsating dot */}
+      <div
+        className="w-1.5 h-1.5 bg-gray-500 rounded-full flex-shrink-0 animate-pulse-dot"
+      />
 
       {/* Text */}
-      <span className="text-gray-500 text-[10px] md:text-sm font-light uppercase tracking-widest">Keep scrolling</span>
+      <span className="text-gray-500 text-[10px] md:text-sm font-light uppercase tracking-widest leading-none">
+        Keep scrolling
+      </span>
     </motion.div>
   );
 };
