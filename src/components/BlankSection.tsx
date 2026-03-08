@@ -1,24 +1,36 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, useMotionValueEvent, motion } from 'motion/react';
 
-const FRAME_COUNT = 161;
+const FRAME_COUNT = 81;
 const IMAGES = Array.from({ length: FRAME_COUNT }, (_, i) => {
-    const frameNumber = (i + 1).toString().padStart(3, '0');
-    return `/phoneui/ezgif-frame-${frameNumber}.jpg`;
+    const frameNumber = (i + 1).toString().padStart(4, '0');
+    return `/frames1/frame_${frameNumber}.png`;
 });
 
 const content = [
     {
+        title: "Welcome to Verzz",
+        description: "Your journey into a new era of exploring and building begins here.",
+        startFrame: 5,
+        endFrame: 15,
+    },
+    {
         title: "Learn",
         description: "Build the foundations that others skip. Understand the why behind every concept, not just the steps to finish it.",
+        startFrame: 22,
+        endFrame: 38,
     },
     {
         title: "Discover",
         description: "Explore paths you didn’t know existed. Find tools, ideas, and opportunities beyond the syllabus.",
+        startFrame: 44,
+        endFrame: 60,
     },
     {
         title: "Connect",
         description: "Connect with people, mentors, and ideas that push you forward.",
+        startFrame: 66,
+        endFrame: 80,
     },
 ];
 
@@ -36,23 +48,18 @@ const BlankSection = () => {
 
     const currentIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
 
-    // Update active text card based on scroll progress
+    // Update active text card based on exact frame numbers
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        const cardLength = content.length;
-        // Adjust breakpoints to be more responsive to the center of each section
-        const cardsBreakpoints = content.map((_, index) => index / cardLength);
-        const closestBreakpointIndex = cardsBreakpoints.reduce(
-            (acc, breakpoint, index) => {
-                const distance = Math.abs(latest - (breakpoint + 1 / (cardLength * 2))); // midpoint of each segment
-                const currentMinDistance = Math.abs(latest - (cardsBreakpoints[acc] + 1 / (cardLength * 2)));
-                if (distance < currentMinDistance) {
-                    return index;
-                }
-                return acc;
-            },
-            0,
-        );
-        setActiveCard(closestBreakpointIndex);
+        const frameIndex = Math.min(Math.max(Math.floor(latest * (FRAME_COUNT - 1)), 0), FRAME_COUNT - 1);
+        
+        let matchingIndex = -1;
+        content.forEach((item, index) => {
+            if (frameIndex >= item.startFrame && frameIndex <= item.endFrame) {
+                matchingIndex = index;
+            }
+        });
+        
+        setActiveCard(matchingIndex);
     });
 
     useEffect(() => {
@@ -139,47 +146,38 @@ const BlankSection = () => {
             ref={containerRef}
             className="relative h-[400vh] w-full bg-black"
         >
-            {/* Sticky Background Canvas */}
-            <div className="sticky top-0 h-screen w-full overflow-hidden">
+            {/* Sticky Wrapper holding Canvas and Text together */}
+            <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
                 <canvas
                     ref={canvasRef}
-                    className="absolute inset-0 h-full w-full object-cover opacity-50 contrast-125 saturate-50"
+                    className="absolute inset-0 h-full w-full object-cover"
                 />
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent pointer-events-none" />
-            </div>
 
-            {/* Scrolling Text Content Overlay */}
-            <div className="relative -mt-[100vh] z-10 pointer-events-none">
-                <div className="max-w-7xl mx-auto px-10 md:px-20">
+                {/* Fixed Text Container - no longer scrolling upwards */}
+                <div className="relative z-10 w-full max-w-7xl mx-auto pointer-events-none h-0">
                     {content.map((item, index) => (
-                        <div
+                        <motion.div
                             key={item.title + index}
-                            className="h-screen flex flex-col justify-center"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{
+                                opacity: activeCard === index ? 1 : 0,
+                                y: activeCard === index ? 0 : 30,
+                                pointerEvents: activeCard === index ? "auto" : "none"
+                            }}
+                            transition={{
+                                duration: 0.6,
+                                ease: "easeOut"
+                            }}
+                            className="absolute top-1/2 -translate-y-1/2 left-10 md:left-20 max-w-xl md:max-w-2xl w-full"
                         >
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{
-                                    opacity: activeCard === index ? 1 : 0.2,
-                                    y: activeCard === index ? 0 : 30,
-                                }}
-                                transition={{
-                                    duration: 0.6,
-                                    ease: "easeOut"
-                                }}
-                                className="max-w-xl md:max-w-2xl"
-                            >
-                                <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight">
-                                    {item.title}
-                                </h2>
-                                <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-                                    {item.description}
-                                </p>
-                            </motion.div>
-                        </div>
+                            <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-xl">
+                                {item.title}
+                            </h2>
+                            <p className="text-xl md:text-2xl text-slate-100 leading-relaxed font-light drop-shadow-lg">
+                                {item.description}
+                            </p>
+                        </motion.div>
                     ))}
-                    {/* Buffer space at the bottom */}
-                    <div className="h-[50vh]" />
                 </div>
             </div>
         </section>
