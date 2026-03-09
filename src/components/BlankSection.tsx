@@ -1,36 +1,36 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useScroll, useTransform, useMotionValueEvent, motion, useSpring } from 'motion/react';
 
-const FRAME_COUNT = 81;
+const FRAME_COUNT = 421;
 const IMAGES = Array.from({ length: FRAME_COUNT }, (_, i) => {
     const frameNumber = (i + 1).toString().padStart(4, '0');
-    return `/frames1/frame_${frameNumber}.png`;
+    return `/frames2/frame_${frameNumber}.png`;
 });
 
 const content = [
     {
         title: "Welcome to Verzz",
         description: "Your journey into a new era of exploring and building begins here.",
-        startFrame: 5,
-        endFrame: 15,
+        startFrame: 44,
+        endFrame: 90,
     },
     {
         title: "Learn",
         description: "Build the foundations that others skip. Understand the why behind every concept, not just the steps to finish it.",
-        startFrame: 22,
-        endFrame: 38,
+        startFrame: 160,
+        endFrame: 210,
     },
     {
         title: "Discover",
         description: "Explore paths you didn’t know existed. Find tools, ideas, and opportunities beyond the syllabus.",
-        startFrame: 44,
-        endFrame: 60,
+        startFrame: 280,
+        endFrame: 330,
     },
     {
         title: "Connect",
         description: "Connect with people, mentors, and ideas that push you forward.",
-        startFrame: 66,
-        endFrame: 80,
+        startFrame: 390,
+        endFrame: 420,
     },
 ];
 
