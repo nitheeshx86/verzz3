@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { useScroll, useTransform, useMotionValueEvent, motion } from 'motion/react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { useScroll, useTransform, useMotionValueEvent, motion, useSpring } from 'motion/react';
 
 const FRAME_COUNT = 81;
 const IMAGES = Array.from({ length: FRAME_COUNT }, (_, i) => {
@@ -48,17 +48,24 @@ const BlankSection = () => {
 
     const currentIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
 
-    // Update active text card based on exact frame numbers
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        const frameIndex = Math.min(Math.max(Math.floor(latest * (FRAME_COUNT - 1)), 0), FRAME_COUNT - 1);
-        
+    // 1. Use useSpring on the frame index (most impactful)
+    const smoothIndex = useSpring(currentIndex, {
+        stiffness: 120,   // higher = snappier, less drift
+        damping: 30,      // higher = less overshoot/ghosting  
+        restDelta: 0.5    // stop when within half a frame
+    });
+
+    // Update active text card based on smoothIndex index
+    useMotionValueEvent(smoothIndex, "change", (latest) => {
+        const frameIndex = Math.round(latest);
+
         let matchingIndex = -1;
         content.forEach((item, index) => {
             if (frameIndex >= item.startFrame && frameIndex <= item.endFrame) {
                 matchingIndex = index;
             }
         });
-        
+
         setActiveCard(matchingIndex);
     });
 
@@ -85,43 +92,87 @@ const BlankSection = () => {
         loadImages();
     }, []);
 
-    const render = (index: number) => {
+    // 3. Pre-scale images to canvas size on load
+    const preScaledRef = useRef<HTMLCanvasElement[]>([]);
+    const lastDimensions = useRef({ width: 0, height: 0 });
+
+    const updatePreScaledImages = useCallback(() => {
+        if (imagesRef.current.length < FRAME_COUNT || !canvasRef.current) return;
+
+        const dpr = window.devicePixelRatio || 1;
+        const width = window.innerWidth * dpr;
+        const height = window.innerHeight * dpr;
+
+        // Only re-scale if dimensions actually changed
+        if (width === lastDimensions.current.width && height === lastDimensions.current.height && preScaledRef.current.length === FRAME_COUNT) {
+            return;
+        }
+
+        lastDimensions.current = { width, height };
+
+        const canvases = imagesRef.current.map((img) => {
+            const offscreen = document.createElement('canvas');
+            offscreen.width = width;
+            offscreen.height = height;
+            const offCtx = offscreen.getContext('2d');
+
+            if (offCtx) {
+                const canvasRatio = width / height;
+                const imgRatio = img.width / img.height;
+
+                let drawWidth, drawHeight, offsetX, offsetY;
+
+                if (imgRatio > canvasRatio) {
+                    drawHeight = height;
+                    drawWidth = img.width * (height / img.height);
+                    offsetX = (width - drawWidth) / 2;
+                    offsetY = 0;
+                } else {
+                    drawWidth = width;
+                    drawHeight = img.height * (width / img.width);
+                    offsetX = 0;
+                    offsetY = (height - drawHeight) / 2;
+                }
+
+                offCtx.imageSmoothingEnabled = true;
+                offCtx.imageSmoothingQuality = 'high';
+                offCtx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+            }
+            return offscreen;
+        });
+
+        preScaledRef.current = canvases;
+    }, [imagesLoaded]);
+
+    const render = (exactIndex: number) => {
         const canvas = canvasRef.current;
         const ctx = canvas?.getContext('2d');
-        const img = imagesRef.current[index];
 
-        if (canvas && ctx && img) {
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
+        if (!canvas || !ctx || preScaledRef.current.length < FRAME_COUNT) return;
 
-            const canvasRatio = canvas.width / canvas.height;
-            const imgRatio = img.width / img.height;
+        // Better fix: Skip blending entirely, just use spring
+        const index = Math.min(Math.max(Math.round(exactIndex), 0), FRAME_COUNT - 1);
+        const img = preScaledRef.current[index];
 
-            let drawWidth, drawHeight, offsetX, offsetY;
+        if (!img) return;
 
-            if (imgRatio > canvasRatio) {
-                drawHeight = canvas.height;
-                drawWidth = img.width * (canvas.height / img.height);
-                offsetX = (canvas.width - drawWidth) / 2;
-                offsetY = 0;
-            } else {
-                drawWidth = canvas.width;
-                drawHeight = img.height * (canvas.width / img.width);
-                offsetX = 0;
-                offsetY = (canvas.height - drawHeight) / 2;
-            }
+        // Reset globalAlpha defensively
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-        }
+        ctx.drawImage(img, 0, 0);
     };
 
     useEffect(() => {
         if (!imagesLoaded) return;
+
+        updatePreScaledImages();
         render(0);
-        const unsubscribe = currentIndex.on("change", (latest) => {
-            const index = Math.min(Math.max(Math.floor(latest), 0), FRAME_COUNT - 1);
-            requestAnimationFrame(() => render(index));
+
+        // 4. Avoid requestAnimationFrame inside a motion event
+        const unsubscribe = smoothIndex.on("change", (latest) => {
+            render(latest);
         });
 
         const handleResize = () => {
@@ -129,27 +180,31 @@ const BlankSection = () => {
                 const dpr = window.devicePixelRatio || 1;
                 canvasRef.current.width = window.innerWidth * dpr;
                 canvasRef.current.height = window.innerHeight * dpr;
-                render(currentIndex.get());
+
+                updatePreScaledImages();
+                render(smoothIndex.get());
             }
         };
 
         window.addEventListener('resize', handleResize);
         handleResize();
+
         return () => {
             unsubscribe();
             window.removeEventListener('resize', handleResize);
         };
-    }, [imagesLoaded, currentIndex]);
+    }, [imagesLoaded, smoothIndex, updatePreScaledImages]);
 
     return (
         <section
             ref={containerRef}
-            className="relative h-[400vh] w-full bg-black"
+            className="relative h-[600vh] w-full bg-black"
         >
             {/* Sticky Wrapper holding Canvas and Text together */}
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
                 <canvas
                     ref={canvasRef}
+                    style={{ willChange: 'contents' }}
                     className="absolute inset-0 h-full w-full object-cover"
                 />
 
