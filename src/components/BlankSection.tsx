@@ -34,6 +34,29 @@ const content = [
     },
 ];
 
+const mobileContent = [
+    {
+        title: "Welcome to Verzz",
+        description: "Your journey into a new era of exploring and building begins here.",
+        image: "/portraitphone/welcome.png"
+    },
+    {
+        title: "Learn",
+        description: "Build the foundations that others skip. Understand the why behind every concept, not just the steps to finish it.",
+        image: "/portraitphone/learn.png"
+    },
+    {
+        title: "Discover",
+        description: "Explore paths you didn’t know existed. Find tools, ideas, and opportunities beyond the syllabus.",
+        image: "/portraitphone/discover.png"
+    },
+    {
+        title: "Connect",
+        description: "Connect with people, mentors, and ideas that push you forward.",
+        image: "/portraitphone/connect.png"
+    }
+];
+
 const BlankSection = () => {
     const containerRef = useRef<HTMLElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -157,46 +180,93 @@ const BlankSection = () => {
     }, [imagesLoaded, smoothIndex, render]);
 
     return (
-        <section
-            ref={containerRef}
-            className="relative h-[600vh] w-full bg-black"
-        >
-            {/* Sticky Wrapper holding Canvas and Text together */}
-            <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
-                <canvas
-                    ref={canvasRef}
-                    style={{ willChange: 'contents' }}
-                    className="absolute inset-0 h-full w-full object-cover"
-                />
+        <>
+            {/* Desktop and Laptop version */}
+            <section
+                ref={containerRef}
+                className="hidden md:block relative h-[600vh] w-full bg-black"
+            >
+                {/* Sticky Wrapper holding Canvas and Text together */}
+                <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
+                    <canvas
+                        ref={canvasRef}
+                        style={{ willChange: 'contents' }}
+                        className="absolute inset-0 h-full w-full object-cover"
+                    />
 
-                {/* Fixed Text Container - no longer scrolling upwards */}
-                <div className="relative z-10 w-full max-w-7xl mx-auto pointer-events-none h-0">
-                    {content.map((item, index) => (
-                        <motion.div
-                            key={item.title + index}
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{
-                                opacity: activeCard === index ? 1 : 0,
-                                y: activeCard === index ? 0 : 30,
-                                pointerEvents: activeCard === index ? "auto" : "none"
-                            }}
-                            transition={{
-                                duration: 0.6,
-                                ease: "easeOut"
-                            }}
-                            className="absolute top-1/2 -translate-y-1/2 left-10 md:left-20 max-w-xl md:max-w-2xl w-full"
+                    {/* Fixed Text Container - no longer scrolling upwards */}
+                    <div className="relative z-10 w-full max-w-7xl mx-auto pointer-events-none h-0">
+                        {content.map((item, index) => (
+                            <motion.div
+                                key={item.title + index}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{
+                                    opacity: activeCard === index ? 1 : 0,
+                                    y: activeCard === index ? 0 : 30,
+                                    pointerEvents: activeCard === index ? "auto" : "none"
+                                }}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: "easeOut"
+                                }}
+                                className="absolute top-1/2 -translate-y-1/2 left-10 md:left-20 max-w-xl md:max-w-2xl w-full"
+                            >
+                                <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-xl">
+                                    {item.title}
+                                </h2>
+                                <p className="text-xl md:text-2xl text-slate-100 leading-relaxed font-light drop-shadow-lg">
+                                    {item.description}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Mobile phone version */}
+            <section className="md:hidden w-full bg-black">
+                {mobileContent.map((item, index) => (
+                    <motion.div 
+                        key={item.title + index} 
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="min-h-[100svh] w-full flex flex-col items-center justify-start px-6 pt-24 pb-12 relative"
+                    >
+                        {/* Upper part: text */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                            className="w-full text-center z-10 mb-8 mt-10"
                         >
-                            <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-xl">
+                            <h2 className="text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-xl">
                                 {item.title}
                             </h2>
-                            <p className="text-xl md:text-2xl text-slate-100 leading-relaxed font-light drop-shadow-lg">
+                            <p className="text-lg text-slate-200 leading-relaxed font-light drop-shadow-md px-2">
                                 {item.description}
                             </p>
                         </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
+                        {/* Lower part: image */}
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+                            className="w-full flex-1 flex items-center justify-center relative p-4 mt-auto"
+                        >
+                            <img 
+                                src={item.image} 
+                                alt={item.title} 
+                                className="w-full h-auto max-h-[55vh] object-contain drop-shadow-2xl"
+                            />
+                        </motion.div>
+                    </motion.div>
+                ))}
+            </section>
+        </>
     );
 };
 
