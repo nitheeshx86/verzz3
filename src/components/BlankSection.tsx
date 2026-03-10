@@ -39,7 +39,7 @@ const BlankSection = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const imagesRef = useRef<HTMLImageElement[]>([]);
-    const [activeCard, setActiveCard] = useState(0);
+    const [activeCard, setActiveCard] = useState(-1);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -92,82 +92,44 @@ const BlankSection = () => {
         loadImages();
     }, []);
 
-    // 3. Pre-scale images to canvas size on load
-    const preScaledRef = useRef<HTMLCanvasElement[]>([]);
-    const lastDimensions = useRef({ width: 0, height: 0 });
-
-    const updatePreScaledImages = useCallback(() => {
-        if (imagesRef.current.length < FRAME_COUNT || !canvasRef.current) return;
-
-        const dpr = window.devicePixelRatio || 1;
-        const width = window.innerWidth * dpr;
-        const height = window.innerHeight * dpr;
-
-        // Only re-scale if dimensions actually changed
-        if (width === lastDimensions.current.width && height === lastDimensions.current.height && preScaledRef.current.length === FRAME_COUNT) {
-            return;
-        }
-
-        lastDimensions.current = { width, height };
-
-        const canvases = imagesRef.current.map((img) => {
-            const offscreen = document.createElement('canvas');
-            offscreen.width = width;
-            offscreen.height = height;
-            const offCtx = offscreen.getContext('2d');
-
-            if (offCtx) {
-                const canvasRatio = width / height;
-                const imgRatio = img.width / img.height;
-
-                let drawWidth, drawHeight, offsetX, offsetY;
-
-                if (imgRatio > canvasRatio) {
-                    drawHeight = height;
-                    drawWidth = img.width * (height / img.height);
-                    offsetX = (width - drawWidth) / 2;
-                    offsetY = 0;
-                } else {
-                    drawWidth = width;
-                    drawHeight = img.height * (width / img.width);
-                    offsetX = 0;
-                    offsetY = (height - drawHeight) / 2;
-                }
-
-                offCtx.imageSmoothingEnabled = true;
-                offCtx.imageSmoothingQuality = 'high';
-                offCtx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-            }
-            return offscreen;
-        });
-
-        preScaledRef.current = canvases;
-    }, [imagesLoaded]);
-
-    const render = (exactIndex: number) => {
+    const render = useCallback((exactIndex: number) => {
         const canvas = canvasRef.current;
         const ctx = canvas?.getContext('2d');
 
-        if (!canvas || !ctx || preScaledRef.current.length < FRAME_COUNT) return;
+        if (!canvas || !ctx || imagesRef.current.length < FRAME_COUNT) return;
 
-        // Better fix: Skip blending entirely, just use spring
         const index = Math.min(Math.max(Math.round(exactIndex), 0), FRAME_COUNT - 1);
-        const img = preScaledRef.current[index];
+        const img = imagesRef.current[index];
 
         if (!img) return;
 
-        // Reset globalAlpha defensively
-        ctx.globalAlpha = 1;
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const { width, height } = canvas;
+        const canvasRatio = width / height;
+        const imgRatio = img.width / img.height;
 
-        ctx.drawImage(img, 0, 0);
-    };
+        let drawWidth, drawHeight, offsetX, offsetY;
+
+        if (imgRatio > canvasRatio) {
+            drawHeight = height;
+            drawWidth = img.width * (height / img.height);
+            offsetX = (width - drawWidth) / 2;
+            offsetY = 0;
+        } else {
+            drawWidth = width;
+            drawHeight = img.height * (width / img.width);
+            offsetX = 0;
+            offsetY = (height - drawHeight) / 2;
+        }
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.clearRect(0, 0, width, height);
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    }, []);
 
     useEffect(() => {
         if (!imagesLoaded) return;
 
-        updatePreScaledImages();
         render(0);
 
         // 4. Avoid requestAnimationFrame inside a motion event
@@ -181,7 +143,6 @@ const BlankSection = () => {
                 canvasRef.current.width = window.innerWidth * dpr;
                 canvasRef.current.height = window.innerHeight * dpr;
 
-                updatePreScaledImages();
                 render(smoothIndex.get());
             }
         };
@@ -193,7 +154,7 @@ const BlankSection = () => {
             unsubscribe();
             window.removeEventListener('resize', handleResize);
         };
-    }, [imagesLoaded, smoothIndex, updatePreScaledImages]);
+    }, [imagesLoaded, smoothIndex, render]);
 
     return (
         <section
