@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const location = useLocation();
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
@@ -38,6 +40,8 @@ const Navbar = () => {
         };
     }, [lastScrollY]);
 
+    const isHome = location.pathname === '/';
+
     return (
         <motion.nav
             initial={{ y: -120, opacity: 0 }}
@@ -62,30 +66,30 @@ const Navbar = () => {
             >
                 {/* Left Section: Logo */}
                 <div className="flex items-center">
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         className="text-black text-xl md:text-2xl font-black tracking-[-0.05em] hover:opacity-60 transition-all duration-300"
                     >
                         VERZ<span className="-ml-[0.05em]">Z</span>
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Right Section: Navigation Links */}
                 <div className="hidden md:flex items-center space-x-10">
-                    <a
-                        href="#story"
+                    <Link
+                        to="/story"
                         className="text-black text-[11px] md:text-[12px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Our Story
-                    </a>
+                    </Link>
                     <a
-                        href="#sparkles-section"
+                        href={isHome ? "#sparkles-section" : "/#sparkles-section"}
                         className="text-black text-[11px] md:text-[12px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
                     >
                         Build with us
                     </a>
                     <a
-                        href="#sparkles-section"
+                        href={isHome ? "#sparkles-section" : "/#sparkles-section"}
                         className="px-6 py-2.5 bg-black text-white rounded-[10px] text-[11px] md:text-[12px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[140px] text-center shadow-xl"
                     >
                         Join Waitlist
