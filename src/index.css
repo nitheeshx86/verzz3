@@ -243,6 +243,21 @@
   background: white;
   cursor: pointer;
   transition: all 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.waitlist-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(160deg, #60A5FA 0%, #4A6FFF 30%, #2563EB 70%, #1E1B4B 100%);
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
 }
 
 .waitlist-btn .text {
@@ -251,6 +266,8 @@
   font-size: 1.125rem;
   transition: all 800ms cubic-bezier(0.16, 1, 0.3, 1);
   font-family: var(--font-display);
+  position: relative;
+  z-index: 2;
 }
 
 .waitlist-btn .arrow {
@@ -258,10 +275,11 @@
   font-size: 1.5rem;
   transition: all 800ms ease;
   line-height: 1;
+  position: relative;
+  z-index: 2;
 }
 
 .waitlist-btn:hover {
-  background: linear-gradient(160deg, #60A5FA 0%, #4A6FFF 30%, #2563EB 70%, #1E1B4B 100%);
   box-shadow:
     inset 0px 2px 1px 0px rgba(255, 255, 255, 0.6),
     /* Sharp top white rim */
@@ -272,6 +290,10 @@
     0px 12px 40px 0px rgba(74, 111, 255, 0.4);
   /* Main external glow */
   transform: translateY(-3px) scale(1.03);
+}
+
+.waitlist-btn:hover::before {
+  opacity: 1;
 }
 
 .waitlist-btn:hover .text {

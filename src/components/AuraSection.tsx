@@ -733,9 +733,9 @@ const AuraSection: React.FC<BentoProps> = ({
                                         alt={card.label}
                                         className="w-full h-full object-contain scale-125 transition-all duration-1000 ease-in-out"
                                         style={{
-                                            opacity: isVisible ? 1 : 0.65,
-                                            filter: isVisible ? 'grayscale(0)' : 'grayscale(1) blur(4px)',
-                                            transform: `scale(${isVisible ? 1.25 : 1.1})`
+                                            opacity: (isMobile || isVisible) ? 1 : 0.65,
+                                            filter: (isMobile || isVisible) ? 'grayscale(0)' : 'grayscale(1) blur(4px)',
+                                            transform: `scale(${(isMobile || isVisible) ? 1.25 : 1.1})`
                                         }}
                                     />
                                 </div>

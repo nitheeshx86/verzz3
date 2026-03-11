@@ -26,7 +26,7 @@ const BetaAccessSection = () => {
                     <span className="arrow">›</span>
                 </button>
                 <button className="px-10 py-5 bg-white/5 hover:bg-white/10 text-white rounded-[16px] text-[15px] font-bold uppercase tracking-[0.2em] border border-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl min-w-[205px] relative z-30">
-                    ← Join Forces
+                    Build With Us
                 </button>
             </div>
 
