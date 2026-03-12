@@ -84,12 +84,6 @@ const Navbar = () => {
                     </Link>
                     <a
                         href={isHome ? "#sparkles-section" : "/#sparkles-section"}
-                        className="text-black text-[11px] md:text-[12px] font-medium tracking-widest uppercase hover:text-[#4A6FFF] transition-all duration-300"
-                    >
-                        Build with us
-                    </a>
-                    <a
-                        href={isHome ? "#sparkles-section" : "/#sparkles-section"}
                         className="px-6 py-2.5 bg-black text-white rounded-[10px] text-[11px] md:text-[12px] font-bold uppercase tracking-[0.2em] hover:scale-[1.03] active:scale-95 transition-all duration-300 min-w-[140px] text-center shadow-xl"
                     >
                         Join Waitlist

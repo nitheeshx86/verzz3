@@ -25,9 +25,6 @@ const BetaAccessSection = () => {
                     <span className="text">{showBetaForm ? "Welcome!" : "Get Early Access"}</span>
                     <span className="arrow">›</span>
                 </button>
-                <button className="px-10 py-5 bg-white/5 hover:bg-white/10 text-white rounded-[16px] text-[15px] font-bold uppercase tracking-[0.2em] border border-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm shadow-xl min-w-[205px] relative z-30">
-                    Build With Us
-                </button>
             </div>
 
             <div
@@ -80,7 +77,7 @@ const SparklesSection = () => {
 
                     {/* Content Section - Now after the sparkles effect */}
                     <div className="flex flex-col items-center justify-center relative z-20 px-4 mt-8">
-                        <p className="text-white text-xl md:text-3xl font-bold italic mb-16 max-w-4xl text-center leading-relaxed tracking-tight">
+                        <p className="text-white text-xl md:text-3xl font mb-16 max-w-4xl text-center leading-relaxed tracking-tight">
                             The platform smart investors wish they had years ago.
                         </p>
 
