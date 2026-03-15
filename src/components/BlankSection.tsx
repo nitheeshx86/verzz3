@@ -5,7 +5,7 @@ import { ScatterBackground } from './ui/scatter-background';
 const FRAME_COUNT = 421;
 const IMAGES = Array.from({ length: FRAME_COUNT }, (_, i) => {
     const frameNumber = (i + 1).toString().padStart(4, '0');
-    return `/frames2/frame_${frameNumber}.png`;
+    return `/frames2_webp/frame_${frameNumber}.webp`;
 });
 
 const content = [
