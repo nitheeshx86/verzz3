@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import useLenis from "./hooks/useLenis";
 
-import CookieConsent from "./components/CookieConsent";
+// import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +21,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <CookieConsent />
+        {/* <CookieConsent /> */}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
