@@ -30,7 +30,7 @@ export interface BentoProps {
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 600;
 const DEFAULT_GLOW_COLOR = '0, 112, 255';
-const MOBILE_BREAKPOINT = 1280;
+const MOBILE_BREAKPOINT = 768;
 
 const trustGapCards: BentoCardProps[] = [
     {

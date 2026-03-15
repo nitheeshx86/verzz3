@@ -155,7 +155,6 @@ const FallingText: React.FC<FallingTextProps> = ({
                 elem.style.left = `${x}px`;
                 elem.style.top = `${y}px`;
                 elem.style.transform = `translate(-50%, -50%) rotate(${body.angle}rad)`;
-                elem.style.willChange = 'transform, left, top';
             });
             animationId = requestAnimationFrame(updateLoop);
         };

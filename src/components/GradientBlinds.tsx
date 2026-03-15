@@ -70,15 +70,10 @@ const GradientBlinds: React.FC<GradientBlindsProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 1280;
-    const defaultDpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
-    // Cap DPR to 1 on tablets/mobile, 1.5 on desktop to ensure smooth framerates for WebGL
-    const optimizedDpr = isMobile ? Math.min(defaultDpr, 1) : Math.min(defaultDpr, 1.5);
-
     const renderer = new Renderer({
-      dpr: dpr ?? optimizedDpr,
+      dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
       alpha: true,
-      antialias: false // Not needed for a pixel shader, saves massive GPU overhead
+      antialias: true
     });
     rendererRef.current = renderer;
     const gl = renderer.gl;
