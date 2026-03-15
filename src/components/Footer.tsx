@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -29,29 +30,26 @@ const Footer = () => {
                     </div>
 
                     {/* Right Side: Links */}
-                    <div className="grid grid-cols-2 gap-x-20 gap-y-6 text-[13px] font-bold uppercase tracking-[0.25em] opacity-90 mb-4">
-                        <a href="#" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Legal Policy</a>
-                        <a href="#" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Privacy Policy</a>
-                        <a href="#" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Cookies</a>
-                        <a href="#" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Terms of Use</a>
-                        <a href="#" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Security</a>
-                        <a href="#" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Risk Disclosure</a>
+                    <div className="flex flex-col gap-y-6 text-[13px] font-bold uppercase tracking-[0.25em] opacity-90 mb-4">
+                        <Link to="/privacy-policy" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Cookies</Link>
+                        <Link to="/privacy-policy" className="hover:opacity-100 hover:translate-x-1 transition-all duration-300">Privacy Policy</Link>
                     </div>
                 </div>
 
                 {/* Bottom Disclaimer */}
                 <div className="border-t border-white/20 pt-16">
                     <p className="text-[11px] md:text-xs leading-relaxed opacity-50 max-w-6xl uppercase tracking-widest text-justify">
-                        Disclaimer: Investing in the securities market is subject to market risks. Read all the related documents carefully before investing.
-                        The securities quoted are for illustration only and are not recommendatory. Registration granted by SEBI and certification from NISM in no way
-                        guarantee performance of the intermediary or provide any assurance of returns to investors. VERZZ is a platform to facilitate the discovery
-                        of SEBI-registered professionals and does not provide investment advice itself. Past performance is not indicative of future results.
-                        Digital wealth management involves risks and may not be suitable for all investors. Please consult your financial advisor before making
-                        any investment decisions. All brand names and logos used on this platform are for identification purposes only.
+                        Disclaimer: Advisory or portfolio management services available through the VERZZ platform are provided solely by SEBI-registered investment advisers, portfolio managers, or other licensed financial professionals listed on the platform. VERZZ itself does not provide investment advice, portfolio management services, or stock recommendations.
+VERZZ operates as a discovery, education, and connection platform designed to help users explore verified financial professionals, learn about investing, and request consultations. Any advisory services, investment recommendations, or financial strategies are provided directly by the respective SEBI-registered professionals, who are solely responsible for their advice and services.
+VERZZ does not act as a broker, custodian, clearing member, or execution platform for securities transactions. Any investment accounts, trade executions, or financial transactions may occur through third-party regulated institutions chosen by the investor or the respective financial professional.
+The presence of any adviser, portfolio manager, or financial professional on the VERZZ platform does not constitute an endorsement, guarantee, or recommendation by VERZZ. Users are encouraged to conduct their own due diligence before engaging with any financial professional.
+Investments in securities, mutual funds, derivatives, or other financial instruments are subject to market risks. Past performance is not indicative of future results, and returns are not guaranteed. Investment values may fluctuate, and loss of capital is possible.
+The content, educational modules, simulations, and information available on the VERZZ platform are provided for informational and educational purposes only and should not be considered investment, legal, tax, or financial advice. Users should consult with a qualified financial, legal, or tax advisor before making investment decisions.
+By using the VERZZ platform, you acknowledge that you are solely responsible for your investment decisions and that VERZZ shall not be liable for any financial losses or damages resulting from actions taken based on information available on the platform.
                     </p>
 
                     <div className="mt-16 flex justify-between items-center opacity-30 text-[10px] uppercase tracking-[0.6em] font-black">
-                        <span>© 2026 VERZZ HQ / GLOBAL</span>
+                        <span>© 2026 VERZZ / GLOBAL</span>
                         <span>Est. 2026</span>
                     </div>
                 </div>
