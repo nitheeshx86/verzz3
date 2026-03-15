@@ -51,7 +51,12 @@ const VerzzSection = () => {
           </motion.div>
 
           <motion.div
-            style={{ scale, opacity: textOpacity, color: textColor }}
+            style={{ 
+              scale, 
+              opacity: textOpacity, 
+              color: textColor,
+              willChange: "transform, opacity, color"
+            }}
             className="verzz-text select-none relative z-10"
           >
             VERZ<span className="-ml-[0.05em]">Z</span>

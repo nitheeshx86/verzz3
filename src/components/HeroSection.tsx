@@ -23,6 +23,7 @@ const HeroSection = () => {
           style={{
             scale,
             borderRadius,
+            willChange: "transform, border-radius"
           }}
           className="relative w-full h-full origin-center"
         >
