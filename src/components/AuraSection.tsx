@@ -558,7 +558,7 @@ const AuraSection: React.FC<BentoProps> = ({
     const shouldDisableAnimations = disableAnimations || isMobile;
 
     return (
-        <section className="relative w-full min-h-screen bg-white flex flex-col justify-center pt-80 pb-24 px-4 xl:px-8 overflow-hidden">
+        <section className="relative w-full min-h-screen bg-white flex flex-col justify-center pt-80 pb-24 px-4 md:px-8 overflow-hidden">
             <style>
                 {`
           .bento-section {
@@ -582,7 +582,7 @@ const AuraSection: React.FC<BentoProps> = ({
             padding: 0.5rem;
           }
           
-          @media (min-width: 1280px) {
+          @media (min-width: 768px) {
             .card-responsive {
               grid-template-columns: repeat(6, 1fr);
             }
@@ -665,7 +665,7 @@ const AuraSection: React.FC<BentoProps> = ({
             text-overflow: ellipsis;
           }
           
-          @media (max-width: 1279px) {
+          @media (max-width: 599px) {
             .card-responsive {
               grid-template-columns: 1fr;
               width: 90%;
@@ -702,8 +702,8 @@ const AuraSection: React.FC<BentoProps> = ({
                 <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-4">
                     The Trust Gap
                 </p>
-                <h2 className="text-4xl xl:text-6xl font-bold text-black tracking-tight leading-none">
-                    Why investing feels harder <br className="hidden xl:block" /> than it should
+                <h2 className="text-4xl md:text-6xl font-bold text-black tracking-tight leading-none">
+                    Why investing feels harder <br className="hidden md:block" /> than it should
                 </h2>
             </motion.div>
 
@@ -742,8 +742,8 @@ const AuraSection: React.FC<BentoProps> = ({
                             );
                         }
 
-                        const baseClassName = `card flex flex-col justify-between relative z-10 aspect-[4/3] w-full max-w-full p-6 xl:p-10 rounded-[2rem] border-2 border-solid border-black/5 font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] ${enableBorderGlow ? 'card--border-glow' : ''
-                            } ${isBig ? 'min-h-[300px] xl:min-h-[400px]' : 'min-h-[160px] xl:min-h-[250px]'}`;
+                        const baseClassName = `card flex flex-col justify-between relative z-10 aspect-[4/3] w-full max-w-full p-6 lg:p-10 rounded-[2rem] border-2 border-solid border-black/5 font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] ${enableBorderGlow ? 'card--border-glow' : ''
+                            } ${isBig ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[160px] lg:min-h-[250px]'}`;
 
                         const cardStyle = {
                             backgroundColor: 'white',
@@ -796,16 +796,16 @@ const AuraSection: React.FC<BentoProps> = ({
                                             </span>
                                         </div>
                                         <div className="card__content flex flex-col relative z-10 mt-auto">
-                                            <h3 className={`card__title text-black m-0 mb-2 xl:mb-4 tracking-tighter leading-none break-words
-                                                ${index === 2 ? 'text-6xl xl:text-9xl font-bold' : ''}
-                                                ${(index === 3 || index === 8) ? 'text-5xl xl:text-7xl font-bold' : ''}
-                                                ${(!isBig) ? 'text-4xl xl:text-5xl' : ''}
+                                            <h3 className={`card__title text-black m-0 mb-2 lg:mb-4 tracking-tighter leading-none break-words
+                                                ${index === 2 ? 'text-6xl lg:text-8xl xl:text-9xl font-bold' : ''}
+                                                ${(index === 3 || index === 8) ? 'text-5xl lg:text-6xl xl:text-7xl font-bold' : ''}
+                                                ${(!isBig) ? 'text-4xl lg:text-4xl xl:text-5xl' : ''}
                                                 ${(index === 3 || index === 5 || index === 7) ? 'font-semibold' : 'font-bold'}
                                             `}>
                                                 {card.title}
                                             </h3>
                                             <p
-                                                className={`card__description ${isBig ? 'text-lg xl:text-2xl' : 'text-base xl:text-xl'} text-gray-500 leading-tight xl:leading-relaxed max-w-md ${textAutoHide ? 'line-clamp-2' : ''}`}
+                                                className={`card__description ${isBig ? 'text-lg lg:text-xl xl:text-2xl' : 'text-base lg:text-lg xl:text-xl'} text-gray-500 leading-tight lg:leading-relaxed max-w-md ${textAutoHide ? 'line-clamp-2' : ''}`}
                                             >
                                                 {card.description}
                                             </p>
