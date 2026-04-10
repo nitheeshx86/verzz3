@@ -98,9 +98,7 @@ const HeroSection = () => {
                     <span className="text">Join the Waitlist</span>
                     <span className="arrow">›</span>
                   </a>
-                  <a href="#sparkles-section" className="text-white/80 hover:text-white font-medium text-lg transition-colors">
-                    Build with us
-                  </a>
+
                 </div>
               </motion.div>
 

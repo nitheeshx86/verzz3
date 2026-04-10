@@ -24,7 +24,7 @@ const BetaAccessSection = () => {
                 >
                     <span className="text">{showBetaForm ? "Welcome!" : "Get Early Access"}</span>
                     <span className="arrow">›</span>
-                </button>
+            </button>
             </div>
 
             <div
