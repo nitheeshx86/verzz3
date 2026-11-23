@@ -5,7 +5,7 @@ import { ScatterBackground } from './ui/scatter-background';
 const FRAME_COUNT = 421;
 const IMAGES = Array.from({ length: FRAME_COUNT }, (_, i) => {
     const frameNumber = (i + 1).toString().padStart(4, '0');
-    return `/frames2/frame_${frameNumber}.png`;
+    return `/frames2_webp/frame_${frameNumber}.webp`;
 });
 
 const content = [
@@ -189,7 +189,7 @@ const BlankSection = () => {
         <>
             <section
                 ref={containerRef}
-                className="hidden md:block relative h-[600vh] w-full bg-black"
+                className="hidden xl:block relative h-[600vh] w-full bg-black"
             >
                 <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center">
                     <canvas
@@ -219,12 +219,12 @@ const BlankSection = () => {
                                         y: activeCard === index ? 0 : 30,
                                     }}
                                     transition={{ duration: 0.6, delay: 0.2 }}
-                                    className="absolute top-1/2 -translate-y-1/2 left-10 md:left-20 max-w-xl md:max-w-2xl w-full z-20 pointer-events-none"
+                                    className="absolute top-1/2 -translate-y-1/2 left-10 xl:left-20 max-w-xl xl:max-w-2xl w-full z-20 pointer-events-none"
                                 >
-                                    <h2 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-xl">
+                                    <h2 className="text-6xl xl:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-xl">
                                         {item.title}
                                     </h2>
-                                    <p className="text-xl md:text-2xl text-slate-100 leading-relaxed font-light drop-shadow-lg">
+                                    <p className="text-xl xl:text-2xl text-slate-100 leading-relaxed font-light drop-shadow-lg">
                                         {item.description}
                                     </p>
                                 </motion.div>
@@ -234,7 +234,7 @@ const BlankSection = () => {
                 </div>
             </section>
 
-            <section className="md:hidden w-full bg-black">
+            <section className="xl:hidden w-full bg-black">
                 {mobileContent.map((item, index) => (
                     <motion.div
                         key={item.title + index}

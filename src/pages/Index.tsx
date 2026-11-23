@@ -37,7 +37,7 @@ const Index = () => {
         </div>
 
         {/* Footer is revealed from beneath on desktop, normal scroll on mobile */}
-        <div className="relative md:sticky md:bottom-0 left-0 w-full z-0 md:-z-10 h-auto bg-[#0055FF]">
+        <div className="relative md:sticky md:bottom-0 left-0 w-full z-0 h-auto bg-[#0055FF]">
           <Footer />
         </div>
       </main>

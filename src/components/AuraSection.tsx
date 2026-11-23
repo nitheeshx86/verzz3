@@ -34,9 +34,9 @@ const MOBILE_BREAKPOINT = 768;
 
 const trustGapCards: BentoCardProps[] = [
     {
-        label: "Misinformation",
-        title: "10,000+",
-        description: "Unverified finance creators are online"
+        label: "Investor BooM",
+        title: "120M+",
+        description: "Indians paticipate in the stock market"
     },
     {
         label: "False Proof",
@@ -46,9 +46,9 @@ const trustGapCards: BentoCardProps[] = [
         hidden: true
     },
     {
-        label: "Unverified Advice",
-        title: "> 89%",
-        description: "Online investment advice is unregulated"
+        label: "Misinformation",
+        title: "> 91%",
+        description: "Retail investors and beginners rely on unverified tips through social media"
     },
     {
         label: "Access Gap",
@@ -65,7 +65,7 @@ const trustGapCards: BentoCardProps[] = [
     {
         label: "Investor Burnout",
         title: "3-5 Hrs a Week",
-        description: "are spent filtering bad financial information"
+        description: "Are spent filtering bad financial information"
     },
     {
         label: "Market Delay",
@@ -75,9 +75,9 @@ const trustGapCards: BentoCardProps[] = [
         hidden: true
     },
     {
-        label: "Investor Dropoff",
-        title: "> 60%",
-        description: "First-time investors stop after early losses"
+        label: "Wealth Transition",
+        title: "₹50 Lakh Cr+",
+        description: "Shifting from traditional assets to financial markets."
     },
     {
         label: "Framgemented Learning",
